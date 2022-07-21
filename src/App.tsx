@@ -1,27 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Accordion from "./components/Accordion/Accordion";
-import {Rating} from "./components/Rating/Rating";
+import {Rating, RatingPropsType, RatingValueType} from "./components/Rating/Rating";
+import OnOff from "./components/OnOff/OnOff";
+import UncontrolledAccordion from "./components/UncontrolledAcordion/UncontrolledAccordion";
+import UncontrolledRating from "./components/UncontrolledRating/UncontrolledRating";
+import {PropsType} from "./components/UncontrolledOnOff/UncontrolledOnOff";
 
 //function declaration
 function App() {
-    // полезное что-то
-    // обязана вернуть JSX
-    console.log("App rendering")
+
+    // let [ratingValue, setRatingValue] = useState<RatingValueType>(0)
+    // let [switchOn, setSwitchOn] = useState<boolean>(false)
+    let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(true)
+    let [value,setValue] = useState("")
     return (
-        <div>
-            <PageTitle title={"This is APP component"} />
-            <PageTitle title={"My friends"} />
-            <Rating value={3} />
-            Article 1
-            <Accordion titleValue={"Menu"} collapsed={true}/>
-            <Accordion titleValue={"Users"} collapsed={false}/>
-            <Rating value={0} />
-            <Rating value={1} />
-            <Rating value={2} />
-            <Rating value={3} />
-            <Rating value={4} />
-            <Rating value={5} />
+        <div className={"App"}>
+            <Accordion titleValue={"Menu"}
+                       collapsed={accordionCollapsed}
+                       onChange={() => {setAccordionCollapsed(!accordionCollapsed)}}/>
+            {/*<>*/}
+            {/*    <input onChange={(event) => {*/}
+            {/*const actualValue = event.currentTarget.value;*/}
+            {/*setValue(actualValue)}*/}
+            {/*}/>*/}
+            {/*</>*/}
+            {/*<OnOff on={switchOn} onChange={setSwitchOn}*/}
+            {/*/>*/}
+            {/*<UncontrolledAccordion titleValue={"Menu"} />*/}
+
+            <UncontrolledRating />
+            {/*<Rating  />*/}
+
         </div>
     );
 }
